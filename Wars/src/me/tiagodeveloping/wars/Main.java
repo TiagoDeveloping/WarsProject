@@ -7,12 +7,20 @@ public class Main extends JavaPlugin {
 
 	public static Main mainClass;
 	
+	private ConfigManager configManager;
+	
 	public void onEnable() {
+		saveConfig();
 		try {
+			
 			mainClass = this;
 			
+			//Register stuff
 			registerCommands();
 //			regiserMainRunnable();
+			
+			//Declare stuff
+			configManager.declareConfigFiles();
 			
 			System.out.println("Wars has started succesfully!");
 		} catch(Exception e) {
@@ -21,7 +29,8 @@ public class Main extends JavaPlugin {
 	}
 	
 	public void onDisable() {
-		
+		saveConfig();
+		System.out.println("Wars has succesfully been disabled!");
 	}
 	
 	private void registerCommands() {
