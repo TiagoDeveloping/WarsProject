@@ -17,6 +17,7 @@ public class warsCommand implements CommandExecutor {
 		
 		if (args.length < 1) {
 			sendHelpMessage(sender);
+			return true;
 		}
 		
 		if (!(sender instanceof Player)) {
@@ -27,13 +28,24 @@ public class warsCommand implements CommandExecutor {
 		Player p = (Player) sender;
 		
 		if (args[0].equalsIgnoreCase("setGenerator")) {
-			String generatorName;
-			if (null == args[1]) {
+//			if (null == args[1]) {
+//				sendGeneratorSetCommandHelpMessage(p);
+//				return true;
+//			}
+//			
+//			if (null == args[2]) {
+//				sendGeneratorSetCommandHelpMessage(p);
+//				return true;
+//			}
+			
+			if (args.length < 2) {
 				sendGeneratorSetCommandHelpMessage(p);
 				return true;
-			} else if (null == args[2]) {
-				sendGeneratorSetCommandHelpMessage(p);
-			} else if (args[1].equalsIgnoreCase("gold")) {
+			}
+			
+			String generatorName;
+			
+			if (args[1].equalsIgnoreCase("gold")) {
 				generatorName = args[2];
 				gManager.registerGenerator(GeneratorType.GOLD, p.getLocation(), generatorName);
 				p.sendMessage("Gold generator has been positioned at you location!");

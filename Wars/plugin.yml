@@ -1,0 +1,9 @@
+name: Wars
+version: 0.1
+author: TiagoDeveloping
+main: me.tiagodeveloping.wars.Main
+description: A minigame in prototype stage!
+api-version: 1.14
+commands:
+    wars:
+        description: Main wars command to control games!
