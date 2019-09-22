@@ -7,6 +7,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import me.tiagodeveloping.wars.Generators.GeneratorListener;
+
 public class Main extends JavaPlugin {
 
 	public static Main mainClass;
@@ -15,14 +17,15 @@ public class Main extends JavaPlugin {
 		saveConfig();
 			mainClass = this;
 			
+			//Register listeners
+			this.getServer().getPluginManager().registerEvents(new GeneratorListener(), this);
+			
 			//Register stuff
 			registerCommands();
 //			regiserMainRunnable();
 			
 			//Declare stuff
-			if (!(ConfigManager.generatorConfigFile.exists())) {
 				new ConfigManager().declareConfigFiles();
-			}
 			
 			System.out.println("Wars has started succesfully!");
 	}

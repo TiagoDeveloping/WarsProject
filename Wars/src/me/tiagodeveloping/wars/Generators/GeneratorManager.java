@@ -3,6 +3,7 @@ package me.tiagodeveloping.wars.Generators;
 import java.io.IOException;
 
 import org.bukkit.Location;
+import org.bukkit.block.Sign;
 
 import me.tiagodeveloping.wars.ConfigManager;
 import me.tiagodeveloping.wars.Main;
@@ -23,6 +24,7 @@ public class GeneratorManager {
 			throw new IllegalArgumentException();
 		} else if (generator == 0) {
 			IronGenerator.declareGenerator(generatorLocation);
+			ConfigManager.generatorConfig.set("generators." + generatorName + ".scheduleId", IronGenerator.scheduler);
 			ConfigManager.generatorConfig.set("generators." + generatorName + ".x", generatorLocation.getBlockX());
 			ConfigManager.generatorConfig.set("generators." + generatorName + ".y", generatorLocation.getBlockY());
 			ConfigManager.generatorConfig.set("generators." + generatorName + ".z", generatorLocation.getBlockZ());
@@ -58,6 +60,21 @@ public class GeneratorManager {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public static int getGeneratorLevel(Sign sign) {
+		int lvl = 1;
+		String line = sign.getLine(2);
+		if (line.contains("1")) {
+			lvl = 1;
+		} else if (line.contains("2")) {
+			lvl = 2;
+		} else if (line.contains("3")) {
+			lvl = 3;
+		} else {
+			throw new IllegalArgumentException();
+		}
+		return lvl;
 	}
 	
 }
