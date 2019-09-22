@@ -1,6 +1,7 @@
 package me.tiagodeveloping.wars;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -26,6 +27,15 @@ public class Main extends JavaPlugin {
 			
 			//Declare stuff
 				new ConfigManager().declareConfigFiles();
+			
+			//Declare config!
+			ConfigManager.generatorConfig.set("generators", new ArrayList<ArrayList<Integer>>());
+			
+			try {
+				ConfigManager.generatorConfig.save(ConfigManager.generatorConfigFile);
+			} catch (IOException e) {
+				Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED + "[Wars] Error, Wars was not able to save the configuragion file!");
+			}
 			
 			System.out.println("Wars has started succesfully!");
 	}

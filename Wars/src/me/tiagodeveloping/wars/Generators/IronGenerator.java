@@ -54,7 +54,7 @@ public class IronGenerator {
 		dropDelay = newDelay;
 	}
 	
-	private static ItemStack ironToken() {
+	public static ItemStack ironToken() {
 		ItemStack token = new ItemStack(Material.IRON_INGOT, 1);
 		ItemMeta meta = token.getItemMeta();
 		meta.setDisplayName(ironName);
