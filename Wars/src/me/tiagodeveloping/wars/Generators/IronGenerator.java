@@ -24,6 +24,8 @@ public class IronGenerator {
 	
 	public static int scheduler;
 	
+	public static int ironGenDelay = 100;
+	
 	public static void declareGenerator(Location loc) {
 		Block generatorBase = loc.subtract(0, 1, 0).getBlock();
 		Block block = loc.add(0, 1, 0).getBlock();

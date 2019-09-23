@@ -36,14 +36,19 @@ public class GeneratorListener implements Listener {
 				e.getPlayer().sendMessage("An error occured with your generator!");
 				return;
 			}
-			ArrayList<ArrayList<Integer>> list = (ArrayList<ArrayList<Integer>>) ConfigManager.generatorConfig.get("generators");
-			ArrayList<Integer> iList = list.get(configIndex);
+			ArrayList<ArrayList<String>> list = (ArrayList<ArrayList<String>>) ConfigManager.generatorConfig.get("generators");
+			ArrayList<String> iList = list.get(configIndex);
 			
-			int targetGeneratorScheduleId = iList.get(0);
+			int targetGeneratorScheduleId = Integer.parseInt(iList.get(0));
 			int newLevel = GeneratorManager.getGeneratorLevel(sign) + 1;
-			int newDelayTime = 100 / newLevel;
+			int newDelayTime = IronGenerator.ironGenDelay / newLevel;
 			
-			e.getPlayer().sendMessage(targetGeneratorScheduleId + " is the scheduler id!");
+			if (newLevel > 4) {
+				e.getPlayer().sendMessage(ChatColor.GREEN + "The generator is already max level!");
+				return;
+			}
+			
+			//e.getPlayer().sendMessage(targetGeneratorScheduleId + " is the scheduler id!");
 			
 			Bukkit.getServer().getScheduler().cancelTask(targetGeneratorScheduleId);
 			
@@ -57,7 +62,7 @@ public class GeneratorListener implements Listener {
 				
 			}, 100, newDelayTime);
 			
-			iList.set(0, task);
+			iList.set(0, task + "");
 			list.set(configIndex, iList);
 			ConfigManager.generatorConfig.set("generators", list);
 			
@@ -72,14 +77,19 @@ public class GeneratorListener implements Listener {
 				e.getPlayer().sendMessage("An error occured with your generator!");
 				return;
 			}
-			ArrayList<ArrayList<Integer>> list = (ArrayList<ArrayList<Integer>>) ConfigManager.generatorConfig.get("generators");
-			ArrayList<Integer> iList = list.get(configIndex);
+			ArrayList<ArrayList<String>> list = (ArrayList<ArrayList<String>>) ConfigManager.generatorConfig.get("generators");
+			ArrayList<String> iList = list.get(configIndex);
 			
-			int targetGeneratorScheduleId = iList.get(0);
+			int targetGeneratorScheduleId = Integer.parseInt(iList.get(0));
 			int newLevel = GeneratorManager.getGeneratorLevel(sign) + 1;
-			int newDelayTime = 100 / newLevel;
+			int newDelayTime = GoldGenerator.goldGenDelay / newLevel;
 			
-			e.getPlayer().sendMessage(targetGeneratorScheduleId + " is the scheduler id!");
+			if (newLevel > 4) {
+				e.getPlayer().sendMessage(ChatColor.GREEN + "The generator is already max level!");
+				return;
+			}
+			
+			//e.getPlayer().sendMessage(targetGeneratorScheduleId + " is the scheduler id!");
 			
 			Bukkit.getServer().getScheduler().cancelTask(targetGeneratorScheduleId);
 			
@@ -93,7 +103,7 @@ public class GeneratorListener implements Listener {
 				
 			}, 100, newDelayTime);
 			
-			iList.set(0, task);
+			iList.set(0, task + "");
 			list.set(configIndex, iList);
 			ConfigManager.generatorConfig.set("generators", list);
 			
@@ -108,14 +118,20 @@ public class GeneratorListener implements Listener {
 				e.getPlayer().sendMessage("An error occured with your generator!");
 				return;
 			}
-			ArrayList<ArrayList<Integer>> list = (ArrayList<ArrayList<Integer>>) ConfigManager.generatorConfig.get("generators");
-			ArrayList<Integer> iList = list.get(configIndex);
+			ArrayList<ArrayList<String>> list = (ArrayList<ArrayList<String>>) ConfigManager.generatorConfig.get("generators");
+			ArrayList<String> iList = list.get(configIndex);
 			
-			int targetGeneratorScheduleId = iList.get(0);
+			int targetGeneratorScheduleId = Integer.parseInt(iList.get(0));
 			int newLevel = GeneratorManager.getGeneratorLevel(sign) + 1;
-			int newDelayTime = 100 / newLevel;
+			int newDelayTime = DiamondGenerator.diamondGenDelay / newLevel;
 			
-			e.getPlayer().sendMessage(targetGeneratorScheduleId + " is the scheduler id!");
+			if (newLevel > 3) {
+				e.getPlayer().sendMessage(ChatColor.GREEN + "The generator is already max level!");
+				return;
+			}
+			
+			
+			//e.getPlayer().sendMessage(targetGeneratorScheduleId + " is the scheduler id!");
 			
 			Bukkit.getServer().getScheduler().cancelTask(targetGeneratorScheduleId);
 			
@@ -129,7 +145,7 @@ public class GeneratorListener implements Listener {
 				
 			}, 100, newDelayTime);
 			
-			iList.set(0, task);
+			iList.set(0, task + "");
 			list.set(configIndex, iList);
 			ConfigManager.generatorConfig.set("generators", list);
 			

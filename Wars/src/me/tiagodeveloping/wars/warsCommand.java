@@ -1,5 +1,6 @@
 package me.tiagodeveloping.wars;
 
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -26,17 +27,9 @@ public class warsCommand implements CommandExecutor {
 		}
 		
 		Player p = (Player) sender;
+		Location loc = p.getLocation();
 		
 		if (args[0].equalsIgnoreCase("setGenerator")) {
-//			if (null == args[1]) {
-//				sendGeneratorSetCommandHelpMessage(p);
-//				return true;
-//			}
-//			
-//			if (null == args[2]) {
-//				sendGeneratorSetCommandHelpMessage(p);
-//				return true;
-//			}
 			
 			if (args.length < 2) {
 				sendGeneratorSetCommandHelpMessage(p);
@@ -47,23 +40,25 @@ public class warsCommand implements CommandExecutor {
 			
 			if (args[1].equalsIgnoreCase("gold")) {
 				generatorName = args[2];
-				gManager.registerGenerator(GeneratorType.GOLD, p.getLocation(), generatorName);
+				gManager.registerGenerator(GeneratorType.GOLD, loc, generatorName);
 				p.sendMessage("Gold generator has been positioned at you location!");
 				return true;
 			} else if (args[1].equalsIgnoreCase("diamond")) {
 				generatorName = args[2];
-				gManager.registerGenerator(GeneratorType.DIAMOND, p.getLocation(), generatorName);
+				gManager.registerGenerator(GeneratorType.DIAMOND, loc, generatorName);
 				p.sendMessage("Diamond generator has been positioned at you location!");
 				return true;
 			} else if (args[1].equalsIgnoreCase("iron")) {
 				generatorName = args[2];
-				gManager.registerGenerator(GeneratorType.IRON, p.getLocation(), generatorName);
+				gManager.registerGenerator(GeneratorType.IRON, loc, generatorName);
 				p.sendMessage("Iron generator has been positioned at you location!");
 				return true;
 			} else {
 				p.sendMessage("generator type help");
 			}
 			
+		} else if (args[0].equalsIgnoreCase("deleteGenerator")) {
+			gManager.deleteGenerator(loc, p);
 		}
 		
 		return true;

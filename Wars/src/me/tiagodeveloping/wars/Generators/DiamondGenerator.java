@@ -20,6 +20,8 @@ public class DiamondGenerator {
 	
 	public static int scheduler;
 	
+	public static int diamondGenDelay = 500;
+	
 	public static void declareGenerator(Location loc) {
 		Block generatorBase = loc.subtract(0, 1, 0).getBlock();
 		Block block = loc.add(0, 1, 0).getBlock();
@@ -39,7 +41,7 @@ public class DiamondGenerator {
 				loc.getWorld().dropItem(loc, ironToken());
 				}
 			}, 
-		100, 100);
+		100, diamondGenDelay);
 		
 	}
 	
