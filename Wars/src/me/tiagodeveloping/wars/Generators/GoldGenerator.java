@@ -38,7 +38,8 @@ public class GoldGenerator {
 		scheduler = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Main.mainClass, 
 			new Runnable() {
 				public void run() {
-				loc.getWorld().dropItem(loc, ironToken());
+				loc.getWorld().dropItemNaturally(loc.add(0.5,1,0.5), ironToken());
+				loc.subtract(0.5,1,0.5);
 				}
 			}, 
 		100, goldGenDelay);
@@ -47,6 +48,14 @@ public class GoldGenerator {
 	
 	public static ItemStack ironToken() {
 		ItemStack token = new ItemStack(Material.GOLD_INGOT, 1);
+		ItemMeta meta = token.getItemMeta();
+		meta.setDisplayName(ironName);
+		token.setItemMeta(meta);
+		return token;
+	}
+	
+	public static ItemStack generatorUpgradeToken(int amount) {
+		ItemStack token = new ItemStack(Material.GOLD_INGOT, amount);
 		ItemMeta meta = token.getItemMeta();
 		meta.setDisplayName(ironName);
 		token.setItemMeta(meta);

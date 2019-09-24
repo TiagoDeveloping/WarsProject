@@ -43,7 +43,8 @@ public class IronGenerator {
 		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Main.mainClass, 
 			new Runnable() {
 				public void run() {
-				loc.getWorld().dropItem(loc, ironToken());
+				loc.getWorld().dropItemNaturally(loc.add(0.5,0.5,0.5), ironToken());
+				loc.subtract(0.5,0.5,0.5);
 				}
 			}, 
 		100, dropDelay);
@@ -64,8 +65,8 @@ public class IronGenerator {
 		return token;
 	}
 	
-	public static ItemStack upgradeToLevel2IronToken() {
-		ItemStack token = new ItemStack(Material.IRON_INGOT, 32);
+	public static ItemStack generatorUpgradeToken(int amount) {
+		ItemStack token = new ItemStack(Material.IRON_INGOT, amount);
 		ItemMeta meta = token.getItemMeta();
 		meta.setDisplayName(ironName);
 		token.setItemMeta(meta);

@@ -37,7 +37,11 @@ public class ConfigManager {
 		}
 
 		generatorConfig = YamlConfiguration.loadConfiguration(generatorConfigFile);
-		generatorConfig.createSection("generators");
+		
+		if (!(generatorConfig.contains("generators"))) {
+			generatorConfig.createSection("generators");
+		}
+		
 		try {
 			generatorConfig.save(generatorConfigFile);
 		} catch (IOException e) {
@@ -63,7 +67,10 @@ public class ConfigManager {
 		}
 
 		startingCagesConfig = YamlConfiguration.loadConfiguration(StartingCagesFile);
-		startingCagesConfig.createSection("startingCages");
+		
+		if (!(startingCagesConfig.contains("startingCages"))) {
+			startingCagesConfig.createSection("startingCages");
+		}
 		try {
 			startingCagesConfig.save(StartingCagesFile);
 		} catch (IOException e) {

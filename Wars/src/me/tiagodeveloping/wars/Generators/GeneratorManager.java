@@ -25,7 +25,7 @@ public class GeneratorManager {
 	 * 		3 = y
 	 * 		4 = z
 	 * 		5 = worldId
-	 * 		6 = 
+	 * 		6 = name
 	 */
 	
 	GeneratorTypeManager gTypeManager = new GeneratorTypeManager();
@@ -89,13 +89,17 @@ public class GeneratorManager {
 		
 		int x, y, z;
 		String uuid;
-		
+		int i = 0;
 		for (ArrayList<String> list : configData) {
 			x = Integer.parseInt(list.get(2));
 			y = Integer.parseInt(list.get(3));
 			z = Integer.parseInt(list.get(4));
 			uuid = list.get(5);
 			Location loc = new Location(Bukkit.getWorld(uuid), x, y, z);
+			
+			Sign sign = (Sign) loc.getBlock().getState();
+			sign.setLine(2, "Level " + 1);
+			sign.update();
 			
 			int delay;
 			
@@ -114,17 +118,21 @@ public class GeneratorManager {
 				item = DiamondGenerator.ironToken();
 			}
 			
-			Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.mainClass, new Runnable() {
+			int task = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.mainClass, new Runnable() {
 				
 				@Override
 				public void run() {
-					loc.getWorld().dropItem(loc, item);
+					loc.getWorld().dropItem(loc.add(0.5,0.75,0.5), item);
+					loc.subtract(0.5,0.75,0.5);
 					
 				}
 				
 			}, 100, delay);
+			list.set(0, task + "");
+			configData.set(i, list);
+			i++;
 		}
-		
+		ConfigManager.generatorConfig.set("generators", configData);
 	}
 	
 	@SuppressWarnings("unchecked")

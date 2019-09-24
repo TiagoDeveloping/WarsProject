@@ -10,13 +10,13 @@ import me.tiagodeveloping.wars.ConfigManager;
 public class DefineStartingCages {
 	
 	@SuppressWarnings("unchecked")
-	public void setStartingCage(Location loc, int map) {
-		ArrayList<HashMap<String, Integer>> configList = (ArrayList<HashMap<String, Integer>>) ConfigManager.startingCagesConfig.get("startingCages");
-		HashMap<String, Integer> startingCageDataMap = new HashMap<>();
-		startingCageDataMap.put("x", loc.getBlockX());
-		startingCageDataMap.put("y", loc.getBlockY());
-		startingCageDataMap.put("z", loc.getBlockZ());
-		startingCageDataMap.put("map", map);
+	public void setStartingCage(Location loc, String mapName) {
+		ArrayList<HashMap<String, String>> configList = (ArrayList<HashMap<String, String>>) ConfigManager.startingCagesConfig.get("startingCages");
+		HashMap<String, String> startingCageDataMap = new HashMap<>();
+		startingCageDataMap.put("x", loc.getBlockX() + "");
+		startingCageDataMap.put("y", loc.getBlockY() + "");
+		startingCageDataMap.put("z", loc.getBlockZ() + "");
+		startingCageDataMap.put("name", mapName);
 		
 		configList.add(startingCageDataMap);
 		
