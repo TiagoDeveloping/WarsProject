@@ -43,8 +43,7 @@ public class IronGenerator {
 		Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Main.mainClass, 
 			new Runnable() {
 				public void run() {
-				loc.getWorld().dropItemNaturally(loc.add(0.5,0.5,0.5), ironToken());
-				loc.subtract(0.5,0.5,0.5);
+					loc.getWorld().dropItem(GeneratorManager.getCenterdBlock(generatorBase.getLocation()), ironToken());
 				}
 			}, 
 		100, dropDelay);

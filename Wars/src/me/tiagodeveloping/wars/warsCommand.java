@@ -40,7 +40,7 @@ public class warsCommand implements CommandExecutor {
 		
 		if (args[0].equalsIgnoreCase("setGenerator")) {
 			
-			if (args.length < 2) {
+			if (args.length < 3) {
 				Messages.sendHelpMessage(p);
 				return true;
 			}

@@ -79,9 +79,7 @@ public class GeneratorListener implements Listener {
 				
 				@Override
 				public void run() {
-					e.getClickedBlock().getLocation().getWorld().dropItemNaturally(e.getClickedBlock().getLocation().add(0.5,0.5,0.5), IronGenerator.ironToken());
-					e.getClickedBlock().getLocation().subtract(0.5,0.5,0.5);
-					
+					e.getClickedBlock().getLocation().getWorld().dropItem(GeneratorManager.getCenterdBlock(genBase.getLocation()), IronGenerator.ironToken());
 					
 					//ConfigManager.generatorConfig.set(arg0, arg1);
 				}
@@ -146,8 +144,7 @@ public class GeneratorListener implements Listener {
 				
 				@Override
 				public void run() {
-					e.getClickedBlock().getLocation().getWorld().dropItemNaturally(e.getClickedBlock().getLocation().add(0.5,1,0.5), GoldGenerator.ironToken());					//ConfigManager.generatorConfig.set(arg0, arg1);
-					e.getClickedBlock().getLocation().subtract(0.5,1,0.5);
+					e.getClickedBlock().getLocation().getWorld().dropItem(GeneratorManager.getCenterdBlock(genBase.getLocation()), GoldGenerator.ironToken());					//ConfigManager.generatorConfig.set(arg0, arg1);
 				}
 				
 			}, 100, newDelayTime);
@@ -204,8 +201,8 @@ public class GeneratorListener implements Listener {
 				
 				@Override
 				public void run() {
-					e.getClickedBlock().getLocation().getWorld().dropItemNaturally(e.getClickedBlock().getLocation().add(0.5,0.75,0.5), DiamondGenerator.ironToken());					//ConfigManager.generatorConfig.set(arg0, arg1);
-					e.getClickedBlock().getLocation().subtract(0.5,0.75,0.5);
+					e.getClickedBlock().getLocation().getWorld().dropItem(GeneratorManager.getCenterdBlock(genBase.getLocation()), DiamondGenerator.ironToken());					//ConfigManager.generatorConfig.set(arg0, arg1);
+
 				}
 				
 			}, 100, newDelayTime);

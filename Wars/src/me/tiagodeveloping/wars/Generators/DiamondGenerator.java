@@ -38,8 +38,7 @@ public class DiamondGenerator {
 		scheduler = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Main.mainClass, 
 			new Runnable() {
 				public void run() {
-				loc.getWorld().dropItemNaturally(loc.add(0.5,1,0.5), ironToken());
-				loc.subtract(0.5,1,0.5);
+					loc.getWorld().dropItem(GeneratorManager.getCenterdBlock(generatorBase.getLocation()), ironToken());
 				}
 			}, 
 		100, diamondGenDelay);

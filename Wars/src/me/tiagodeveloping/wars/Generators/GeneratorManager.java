@@ -60,7 +60,7 @@ public class GeneratorManager {
 			configData.add(4, generatorLocation.getBlockZ() + "");
 			String worldId = generatorLocation.getWorld().getName();
 			configData.add(5, worldId + "");
-			configData.add(6, generatorName);
+				configData.add(6, generatorName);
 			configList.add(configData);
 		} else if (generator == 2) {
 			ArrayList<String> configData = new ArrayList<String>();
@@ -118,12 +118,14 @@ public class GeneratorManager {
 				item = DiamondGenerator.ironToken();
 			}
 			
+			System.out.println("past location");
 			int task = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.mainClass, new Runnable() {
 				
 				@Override
 				public void run() {
-					loc.getWorld().dropItem(loc.add(0.5,0.75,0.5), item);
-					loc.subtract(0.5,0.75,0.5);
+					loc.getWorld().dropItem(getCenterdBlock(loc), item);
+//					loc.getWorld().dropItem(loc.add(loc.getX() + sX,0.5,loc.getZ() + sZ), item);
+//					loc.subtract(loc.getX() + sX,0.75,loc.getZ() + sZ);
 					
 				}
 				
@@ -131,8 +133,36 @@ public class GeneratorManager {
 			list.set(0, task + "");
 			configData.set(i, list);
 			i++;
+			//System.out.println(list.toString());
+			//System.out.println("done for loop");
 		}
 		ConfigManager.generatorConfig.set("generators", configData);
+		System.out.println("done");
+		try {
+			ConfigManager.generatorConfig.save(ConfigManager.generatorConfigFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static Location getCenterdBlock(Location loc) {
+		double sX = -0.5;
+		double sZ = -0.5;
+		
+		double x = loc.getBlockX();
+		double y = loc.getBlockY() + 0.75;
+		double z = loc.getBlockZ();
+		
+		if (x < 0) {
+			sX = 0.5;
+		}
+		
+		if (z < 0) {
+			sZ = 0.5;
+		}
+		//Bukkit.broadcastMessage("got location");
+		return new Location(loc.getWorld(), x + sX, y + 0.75, z + sZ);
+		
 	}
 	
 	@SuppressWarnings("unchecked")

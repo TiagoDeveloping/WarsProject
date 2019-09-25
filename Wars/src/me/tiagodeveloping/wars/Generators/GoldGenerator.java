@@ -26,7 +26,7 @@ public class GoldGenerator {
 		Block generatorBase = loc.subtract(0, 1, 0).getBlock();
 		Block block = loc.add(0, 1, 0).getBlock();
 		block.setType(Material.OAK_SIGN);
-		
+		//loc.subtract(0,1,0);
 		Sign sign = (Sign) block.getState();
 		sign.setLine(0, firstSignLine);
 		sign.setLine(2, secondSignLine.replace("$lvl$", "1"));
@@ -34,12 +34,11 @@ public class GoldGenerator {
 		sign.update();
 		loc.getBlock().setBlockData(sign.getBlockData());
 		generatorBase.setType(Material.GOLD_BLOCK);
-		
-		scheduler = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Main.mainClass, 
+		//loc.subtract(0,1,0);
+		scheduler = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main.mainClass, 
 			new Runnable() {
 				public void run() {
-				loc.getWorld().dropItemNaturally(loc.add(0.5,1,0.5), ironToken());
-				loc.subtract(0.5,1,0.5);
+					loc.getWorld().dropItem(GeneratorManager.getCenterdBlock(generatorBase.getLocation()), ironToken());
 				}
 			}, 
 		100, goldGenDelay);
