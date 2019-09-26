@@ -28,8 +28,6 @@ public class Main extends JavaPlugin {
 			
 				ArenaConfigManager.declareGeneratorConfigFile();
 				
-			//Declare config!
-			//ConfigManager.generatorConfig.set("generators", new ArrayList<ArrayList<Integer>>());
 			
 			//Enable generators
 			GeneratorManager.enableRegisteredGenerators();
