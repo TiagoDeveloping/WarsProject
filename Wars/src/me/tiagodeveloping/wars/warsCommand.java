@@ -77,6 +77,8 @@ public class warsCommand implements CommandExecutor {
 			cage.registerToConfig();
 			safeArenaConfig();
 			p.sendMessage(ChatColor.GREEN + "The cage " + ChatColor.ITALIC + args[1] + ChatColor.RESET + ChatColor.GREEN + " has been created!");
+		} else if (args[0].equalsIgnoreCase("deleteCage")) {
+			
 		} else if (args[0].equalsIgnoreCase("createArena")) {
 			if (args.length < 1) {
 				Messages.sendHelpMessage(p);
