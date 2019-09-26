@@ -46,15 +46,4 @@ public class Main extends JavaPlugin {
 		this.getCommand("wars").setExecutor((CommandExecutor) new warsCommand());
 	}
 	
-//	private void regiserMainRunnable() {
-//		new BukkitRunnable() {
-//			
-//			@Override
-//			public void run() {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//		};
-//	}
-	
 }
