@@ -7,6 +7,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+import me.tiagodeveloping.wars.arena.ArenaUtil;
+
 public class GameListener implements Listener {
 
 	public void playerJoinGameEvent(PlayerInteractEvent e) {
@@ -21,7 +23,7 @@ public class GameListener implements Listener {
 			String signHeader = sign.getLine(0);
 			if (signHeader == JoinGameSign.signHeader) {
 				String mapName = sign.getLine(1);
-				
+				ArenaUtil.teleportPlayerToArena(p.getUniqueId(), mapName);
 				sign.setLine(4, "Max 8 players");
 			}
 		}

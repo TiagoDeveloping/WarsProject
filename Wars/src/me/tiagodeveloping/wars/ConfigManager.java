@@ -2,6 +2,7 @@ package me.tiagodeveloping.wars;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -40,6 +41,7 @@ public class ConfigManager {
 		
 		if (!(generatorConfig.contains("generators"))) {
 			generatorConfig.createSection("generators");
+			generatorConfig.set("generators", new ArrayList<ArrayList<String>>());
 		}
 		
 		try {
